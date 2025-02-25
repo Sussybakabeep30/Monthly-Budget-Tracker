@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+        
+</head>
+<body>
+    <div class="container" style="display: none;">
+        <div class="header">
+            <h1><i class="fas fa-wallet"></i> Personal Budget Tracker</h1>
+        </div>
+
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-money-bill-wave"></i> Monthly Budget</h2>
+                </div>
+                <div class="form-group">
+                    <label for="budgetAmount">Set Budget Amount</label>
+                    <input type="number" id="budgetAmount" class="form-control" placeholder="Enter amount">
+                </div>
+                <button id="setBudget" class="btn btn-primary"> <i class="fas fa-save"></i>Set Budget</button>
+                <div class="summary-card">
+                    <h3>Current Budget</h3>
+                    <p id="currentBudget">$0.00</p>
+                    <h3>Remaining</h3>
+                    <p id="remainingBudget">$0.00</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-receipt"></i> Add Expense</h2>
+                </div>
+                <form id="expenseForm">
+                    <div class="form-group">
+                        <label for="expenseTitle">Title</label>
+                        <input type="text" id="expenseTitle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseAmount">Amount</label>
+                        <input type="number" id="expenseAmount" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expenseCategory">Category</label>
+                        <select id="expenseCategory" class="form-control" required>
+                            <option value="groceries"> Groceries</option>
+                            <option value="utilities">Utilities</option>
+                            <option value="rent">Rent</option>
+                            <option value="entertainment"> Entertainment</option>
+                            <option value="transport">Transport</option>
+                            <option value="medical"> Medical</option>
+                            <option value="food"> Food</option>
+                            <option value="fashion"> Fashion</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">  <i class="fas fa-plus"></i> Add Expense</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-exchange-alt"></i> Currency Converter</h2>
+                </div>
+                <div class="currency-converter">
+                    <div class="form-group">
+                        <label for="fromCurrency">From</label>
+                        <select id="fromCurrency" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toCurrency">To</label>
+                        <select id="toCurrency" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Result</label>
+                        <p id="conversionResult">0.00</p>
+                    </div>
+                    <button id="convertCurrency" class="btn btn-primary">  <i class="fas fa-sync"></i>Convert</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-list"></i> Expenses</h2>
+            </div>
+            <div class="expense-list" id="expenseList"></div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-chart-pie"></i> Spending Breakdown</h2>
+            </div>
+            <div class="chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Load our scripts in the correct order -->
+    <script src="notifications.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
